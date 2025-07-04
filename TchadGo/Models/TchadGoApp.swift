@@ -26,7 +26,7 @@ struct TchadGoApp: App {
     var body: some Scene {
         WindowGroup {
             
-       GetStarted()
+            RootView()
         }
         .modelContainer(sharedModelContainer)
     }

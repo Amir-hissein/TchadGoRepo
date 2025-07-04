@@ -17,14 +17,6 @@ struct SearchBar: View {
             
             HStack{
                 HStack{
-                    VStack (spacing:13){
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
-                    }.padding(15)
-                        .background(Color(hex: "29aa96"))
-                            .cornerRadius(10)
-                            .shadow(color:.gray .opacity(0.1), radius: 2, x: 0, y: 2)
-                    
                     VStack {
                         TextField("Search", text: $searchText)
                             .focused($isFocused)
@@ -32,6 +24,13 @@ struct SearchBar: View {
                             .disableAutocorrection(true)
                     }.padding(15)
                         .background(Color(.systemGray6))
+                            .cornerRadius(10)
+                            .shadow(color:.gray .opacity(0.1), radius: 2, x: 0, y: 2)
+                    VStack (spacing:13){
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.white)
+                    }.padding(15)
+                        .background(Color(hex: "29aa96"))
                             .cornerRadius(10)
                             .shadow(color:.gray .opacity(0.1), radius: 2, x: 0, y: 2)
                     

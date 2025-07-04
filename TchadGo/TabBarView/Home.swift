@@ -11,7 +11,7 @@ struct Home: View {
     @State var locationShow = false
     @State var UserShow = false
     @FocusState var FocusKeyboard: Bool
-    
+    let username: String
   @State var searchText: String = ""
     var body: some View {
         
@@ -32,18 +32,25 @@ struct Home: View {
                     
                     Button(action: {
                         self.UserShow.toggle()
+                        UserShow = true
                     }){
                         Image( systemName: "person.circle.fill").font(.largeTitle).foregroundColor(.gray)
                     }.sheet(isPresented: $UserShow) {
                         // sheet permet la sortit d une fenetre
-                        UserLog()
+                        LoginView(loggedInUser: .constant(nil))// Version
                     }
                 }
+                    HStack{
+                        Text("🌟 Bienvenue, \(username)!")
+                            .font(.title2)
+                            .padding(.leading, 20)
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    
                 //section du texte
                 Text("Discover your destination!").fontWeight(.heavy).font(.largeTitle).padding(.top,15)
-                
                    SearchBar()
-                
                     //section du texte de boutton horizontal
                     HStack{
                         Button(action: {
@@ -82,5 +89,5 @@ struct Home: View {
 
 
 #Preview {
-    Home()
+    Home( username: "User")
 }

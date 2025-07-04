@@ -11,7 +11,7 @@ struct TabBar: View {
     var body: some View {
         NavigationStack{
             TabView {
-                Home().tabItem{
+                Home(username: "user").tabItem{
                     Image( systemName: "house")
                         .resizable()
                         .font(.largeTitle)
