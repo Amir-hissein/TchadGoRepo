@@ -10,12 +10,13 @@ import SwiftData
 
 @main
 struct TchadGoApp: App {
+    @StateObject private var networkMonitor = NetworkMonitor.shared
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
@@ -25,8 +26,8 @@ struct TchadGoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            
-            RootView()
+            RootViews()
+                .environmentObject(networkMonitor)
         }
         .modelContainer(sharedModelContainer)
     }

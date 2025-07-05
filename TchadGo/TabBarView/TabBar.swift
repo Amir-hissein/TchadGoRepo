@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TabBar: View {
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack{
             TabView {
@@ -34,7 +35,22 @@ struct TabBar: View {
                 }
             }
               
-        }
+        }.navigationBarBackButtonHidden(true)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss()
+                    }){
+                        HStack{
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                                
+                            
+                            
+                        }
+                    }
+                }
+            }
         
     }
 }

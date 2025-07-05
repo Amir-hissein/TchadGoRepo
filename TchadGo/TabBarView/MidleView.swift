@@ -79,7 +79,7 @@ struct MidleView: View {
                     //fin de section des image et des bouttons
                 }
             }.padding()
-                .background(.ultraThinMaterial)
+                .background(.white)
                 .cornerRadius(20)
         }.sheet(isPresented: $show) {
             // sheet permet la sortit d une fenetre 

@@ -47,7 +47,7 @@ struct LoginView: View {
             .navigationTitle("Connexion")
             .padding()
         }
-    
+    }
 }
 
 struct Homes: View {
@@ -81,5 +81,4 @@ struct Homes: View {
 // Prévisualisation
 #Preview {
     RootView()
-}
 }

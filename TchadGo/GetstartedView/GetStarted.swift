@@ -9,10 +9,10 @@ import SwiftUI
 
 struct GetStarted: View {
     @State var GetShow: Bool = false
+    //BACK BUTTON
+   
     var body: some View {
             NavigationStack{
-                ScrollView {
-                  
                     VStack {
                         VStack{
                             Image("logo1")
@@ -21,21 +21,23 @@ struct GetStarted: View {
                                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height*1/3)
                               
                         }
-                  
-                       
-                        VStack(alignment: .center ,spacing: 15){
+                        Spacer()
+                      
+                        VStack(alignment: .center ,spacing: 20){
                             Text("Discover Chad – where vibrant culture, stunning beauty, and extraordinary wonders come together.")
                                 .fontWeight(.heavy)
                                 .multilineTextAlignment(TextAlignment.center)
-                                .foregroundColor(.black)
+                               
+                         
                             Text("Explore tourist attractions start your journey now!")
                                 .fontWeight(.medium)
-                                .font(.system(size: 20, weight: .medium, design: .default))
+                                .font(.system(size: 15, weight: .heavy, design: .default))
                                 .foregroundColor(.gray)
                                 .multilineTextAlignment(TextAlignment.center)
                
                         }
                         
+                        Spacer()
                  
                         HStack(spacing:10){
                             
@@ -58,15 +60,21 @@ struct GetStarted: View {
                                 
                         }.navigationDestination(isPresented: $GetShow){
                             TabBar()
-                         
-                        }.offset(y:100)
-          
+                                
+                         // --section de boutton de retoure
+                        }
+                        Spacer()
                    
             }.padding()
+                
+                
                 }
-            }.navigationTitle("Get Started")
+       
+        
+            }
+    
         }
-        }
+     
         
   
 

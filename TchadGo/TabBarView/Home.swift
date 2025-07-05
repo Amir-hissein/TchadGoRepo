@@ -18,69 +18,55 @@ struct Home: View {
         // sectıon de home
         NavigationStack {
            
-            VStack(alignment: .leading, spacing: 12){
-                HStack{
-                    Button(action: {
-                        self.locationShow.toggle()
-                    }){
-                        Image( systemName: "location.viewfinder").font(.title).foregroundColor(.gray)
-                    }.sheet(isPresented: $locationShow) {
-                        // sheet permet la sortit d une fenetre
-                        Location()
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                        self.UserShow.toggle()
-                        UserShow = true
-                    }){
-                        Image( systemName: "person.circle.fill").font(.largeTitle).foregroundColor(.gray)
-                    }.sheet(isPresented: $UserShow) {
-                        // sheet permet la sortit d une fenetre
-                        LoginView(loggedInUser: .constant(nil))// Version
-                    }
+            ZStack{
+                //Color.init(Color(hex: "29aa96").opacity(0.3)).ignoresSafeArea()
+                
+                VStack{
+                    Rectangle()
+                        .fill(Color.init(Color(hex: "29aa96")))
+                        .frame(width: 450, height: 200)
+                        .offset(y:-380)
+                        .padding(.horizontal,-35)
                 }
+                VStack(alignment: .leading, spacing: 12){
                     HStack{
-                        Text("🌟 Bienvenue, \(username)!")
-                            .font(.title2)
-                            .padding(.leading, 20)
-                            .foregroundColor(.gray)
+                        Button(action: {
+                            self.locationShow.toggle()
+                        }){
+                            Image( systemName: "location.viewfinder").font(.title).foregroundColor(.white)
+                        }.sheet(isPresented: $locationShow) {
+                            // sheet permet la sortit d une fenetre
+                            Location()
+                        }
                         Spacer()
+                        
+                        Button(action: {
+                            self.UserShow.toggle()
+                            UserShow = true
+                        }){
+                            Image( systemName: "person.circle.fill").font(.largeTitle).foregroundColor(.white)
+                        }.sheet(isPresented: $UserShow) {
+                            // sheet permet la sortit d une fenetre
+                            LoginView(loggedInUser: .constant(nil))// Version
+                        }
                     }
-                    
-                //section du texte
-                Text("Discover your destination!").fontWeight(.heavy).font(.largeTitle).padding(.top,15)
-                   SearchBar()
-                    //section du texte de boutton horizontal
-                    HStack{
-                        Button(action: {
-                            
-                        }){
-                            Text("Experience").foregroundColor(.gray)
+                        HStack{
+                            Text("🌟 Bienvenue, \(username)!")
+                                .font(.title2)
+                                .padding(.leading, 20)
+                                .foregroundColor(.black)
+                            Spacer()
                         }
-                        Spacer()
-                        Button(action: {
-                            
-                        }){
-                            Text("Adventure").foregroundColor(.gray)
-                        }
-                        Spacer()
-                        Button(action: {
-                            
-                        }){
-                            Text("Activities").foregroundColor(.gray)
-                        }
-                        Spacer()
-                        Button(action: {
-                            
-                        }){
-                            Text("Flay").foregroundColor(.gray)
-                        }
-                    }.padding([.top],30)
-                        .padding([.bottom],15)
-                    MidleView()
-                    BottomView().padding(.bottom,20)
-                }.padding()
+                        
+                    //section du texte
+                    Text("Discover your destination!").fontWeight(.heavy).font(.largeTitle).padding(.top,15)
+                       SearchBar()
+                        //section du texte de boutton horizontal
+                        MidleView()
+                        BottomView().padding(.bottom,40)
+                    Spacer()
+                    }.padding()
+                }
             }
         }
     }
