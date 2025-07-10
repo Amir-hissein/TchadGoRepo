@@ -17,22 +17,20 @@ struct SearchBar: View {
             
             HStack{
                 HStack{
-                    VStack {
-                        TextField("Search", text: $searchText)
-                            .focused($isFocused)
-                            .autocorrectionDisabled(true)
-                            .disableAutocorrection(true)
-                    }.padding(15)
-                        .background(Color(.systemGray6))
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                    TextField("Search", text: $searchText)
+                        .focused($isFocused)
+                        .autocorrectionDisabled(true)
+                        .disableAutocorrection(true)
+                    
+                }.padding(15)
+                        .background(.ultraThinMaterial)
                             .cornerRadius(10)
                             .shadow(color:.gray .opacity(0.1), radius: 2, x: 0, y: 2)
-                    VStack (spacing:13){
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.white)
-                    }.padding(15)
-                        .background(Color(hex: "29aa96"))
-                            .cornerRadius(10)
-                            .shadow(color:.gray .opacity(0.1), radius: 2, x: 0, y: 2)
+                    
+                        
+                  
                     
                     if !searchText.isEmpty {
                         Button(action: {
@@ -64,7 +62,7 @@ struct SearchBar: View {
                 
         }
             
-}
+
 }
 
 #Preview {

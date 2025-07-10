@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GetStarted: View {
     @State var GetShow: Bool = false
+    @State private var offsetX: CGFloat = -200
+    @State private var opacity: Double = 0.5
     //BACK BUTTON
    
     var body: some View {
@@ -19,7 +21,16 @@ struct GetStarted: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height*1/3)
-                              
+                                .cornerRadius(30)
+                                .scaledToFit()
+                                .offset(x: offsetX)
+                                .opacity(opacity)
+                                .animation(.easeInOut(duration: 0.5), value:  offsetX)
+                                .animation(.easeInOut(duration: 0.5), value:  opacity)
+                                .onAppear{
+                                    offsetX = 0
+                                    opacity = 1
+                                }
                         }
                         Spacer()
                       
@@ -27,6 +38,7 @@ struct GetStarted: View {
                             Text("Discover Chad – where vibrant culture, stunning beauty, and extraordinary wonders come together.")
                                 .fontWeight(.heavy)
                                 .multilineTextAlignment(TextAlignment.center)
+                                .padding()
                                
                          
                             Text("Explore tourist attractions start your journey now!")

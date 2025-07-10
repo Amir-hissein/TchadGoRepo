@@ -26,7 +26,7 @@ struct TchadGoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootViews()
+            TabbarView()
                 .environmentObject(networkMonitor)
         }
         .modelContainer(sharedModelContainer)

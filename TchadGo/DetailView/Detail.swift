@@ -11,7 +11,7 @@ struct Detail: View {
    
     var body: some View {
         VStack{
-            Image("Chad").resizable().aspectRatio(1.35, contentMode: .fill)
+            Image("desert").resizable().aspectRatio(1.35, contentMode: .fill)
                 .frame(width:UIScreen.main.bounds.width, height: 500)
                 .offset(y: -200)
                 .padding(.bottom,-200)
