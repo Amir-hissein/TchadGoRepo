@@ -32,9 +32,10 @@ struct BottomView: View {
                             }){
                                 
                                 VStack(spacing:8) {
-                                    Image(systemName: "location.north.circle.fill").font(.largeTitle)
-                                        .foregroundColor(Color(hex: "29aa96"))
-                                        .padding()
+                                    Image("cart")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: 50)
                                         .background(.ultraThinMaterial)
                                         .cornerRadius(10)
                                 }
