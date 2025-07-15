@@ -25,9 +25,8 @@ struct TchadGoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootViews()
-                .environmentObject(networkMonitor)
-                .environmentObject(appState) // Injection de l'état
+           GetStarted()
+           
         }
         .modelContainer(sharedModelContainer)
     }

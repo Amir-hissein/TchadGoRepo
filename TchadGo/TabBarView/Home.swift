@@ -32,7 +32,7 @@ struct Home: View {
                             Image( systemName: "location.viewfinder").font(.title2)
                         }.sheet(isPresented: $locationShow) {
                             // sheet permet la sortit d une fenetre
-              Location()
+                            LiquidGlassTabBar()
                         }
                         Spacer()
                         
@@ -43,7 +43,7 @@ struct Home: View {
                             Image( systemName: "person.circle").font(.title)
                         }.sheet(isPresented: $UserShow) {
                             // sheet permet la sortit d une fenetre
-                            LoginView(loggedInUser: .constant(nil))// Version
+                       
                         }
                     }
                    
@@ -51,7 +51,7 @@ struct Home: View {
                     //section du texte
                    
                         Text(text).fontWeight(.heavy).font(.title).padding(.top,15)
-                    Location()
+                    LiquidGlassTabBar()
                         //section du texte de boutton horizontal
                         MidleView()
                     Spacer()
