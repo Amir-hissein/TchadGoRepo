@@ -43,11 +43,12 @@ struct NoConnexionView: View {
             }
 
             // Contenu principal
+            Spacer()
             ScrollView {
                 VStack(spacing: 20) {
-                    Image("logo1")
+                    Image("go4")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 300, height: 300)
                         .offset(y: -20)
 
@@ -76,11 +77,11 @@ struct NoConnexionView: View {
                     }) {
                         Text("Réessayer")
                             .padding()
-                            .frame(maxWidth: 200)
-                            .background(.ultraThinMaterial)
+                            .frame(maxWidth: 300)
                             .foregroundColor(Color(hex: "29aa96"))
+                            .background(.ultraThinMaterial)
                             .cornerRadius(10)
-                            .bold()
+                            
                     }
                 }
                 .padding()
