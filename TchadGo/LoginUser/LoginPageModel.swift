@@ -31,7 +31,7 @@ class LoginPageModel: ObservableObject {
     
     func validateFields() -> Bool {
         // Vérification email vide ou invalide
-        if email.trimmingCharacters(in: .whitespaces).isEmpty || !email.contains("@") {
+        if email.trimmingCharacters(in: .whitespaces).isEmpty || !email.contains("@.com") {
             errorMessage = "Please enter a valid email."
             showError = true
             return false

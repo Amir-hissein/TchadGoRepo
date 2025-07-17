@@ -21,7 +21,6 @@ struct Detail: View {
                    StartView()
                     DetailBottom()
                     
-                    
                 }
                 
             }.background(Color.white)

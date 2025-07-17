@@ -53,11 +53,8 @@ struct Home: View {
                         Text(text).fontWeight(.heavy).font(.title).padding(.top,15)
                     LiquidGlassTabBar()
                         //section du texte de boutton horizontal
-                        MidleView()
-                    Spacer()
-                      
-                    Spacer()
-                        BottomView().padding(.bottom,40)
+                  
+                 
                     Spacer()
                     }.padding()
                 }

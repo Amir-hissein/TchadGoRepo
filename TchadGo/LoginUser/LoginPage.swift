@@ -14,7 +14,6 @@ struct LoginPage: View {
     @State private var animateTitle = false
     @State private var animateFields = false
     @State private var animateButtons = false
-
     var body: some View {
         NavigationStack {
             VStack {
@@ -24,7 +23,7 @@ struct LoginPage: View {
                         .resizable()
                         .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundColor(.white)
-                        .frame(height: GetRect().height / 5)
+                        .frame(height: GetRect().height / 4)
                         .background(
                             ZStack {
                                 LinearGradient(colors: [

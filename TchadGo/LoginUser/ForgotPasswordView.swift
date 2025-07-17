@@ -23,8 +23,8 @@ struct ForgotPasswordView: View {
     @State private var flyAwayPlane = false
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 25) {
+        ScrollView(.vertical,showsIndicators: false){
+            VStack(spacing: 25){
                 // Header
                 Spacer()
                 Image("eplan")
@@ -81,9 +81,9 @@ struct ForgotPasswordView: View {
                         email = ""
 
                         // Auto hide success animation and go back
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                             withAnimation {
-                                showSuccessAnimation = false
+                                showSuccessAnimation = true
                             }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                 dismiss()
@@ -136,7 +136,7 @@ struct ForgotPasswordView: View {
                 animateButton = true
                 animateBackButton = true
                 rotatePlane = true
-            }
+         
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -164,7 +164,7 @@ func CustomTextField(icon: String, title: String, hint: String, value: Binding<S
             Image(systemName: icon)
         }
         .foregroundColor(Color.black.opacity(0.8))
-
+        
         if title.contains("Password") && !shoPassword.wrappedValue {
             SecureField(hint, text: value)
                 .padding(.top, 2)
@@ -172,9 +172,10 @@ func CustomTextField(icon: String, title: String, hint: String, value: Binding<S
             TextField(hint, text: value)
                 .padding(.top, 2)
         }
-
+        
         Divider()
             .background(Color.black.opacity(0.4))
+    }
     }
 }
 
