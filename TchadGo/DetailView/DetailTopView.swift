@@ -9,19 +9,22 @@ import SwiftUI
 
 struct DetailTopView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 10){
-            HStack{
-                VStack{
-                    Text("desrt").fontWeight(.heavy).font(.largeTitle)
-                    
-                    
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                VStack {
+                    Text("desrt")
+                        .fontWeight(.heavy)
+                        .font(.largeTitle)
                 }
+
                 Spacer()
-                
-                Text("$250").foregroundColor(.gray).font(.largeTitle)
+
+                Text("$250")
+                    .foregroundColor(.gray)
+                    .font(.largeTitle)
             }
-            
-        }.padding()
+        }
+        .padding()
     }
 }
 

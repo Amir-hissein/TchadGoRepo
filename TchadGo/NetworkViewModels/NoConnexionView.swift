@@ -46,7 +46,7 @@ struct NoConnexionView: View {
             Spacer()
             ScrollView {
                 VStack(spacing: 20) {
-                    Image("go4")
+                    Image("go6")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 300, height: 300)
@@ -74,14 +74,13 @@ struct NoConnexionView: View {
                         } else {
                             print("Veuillez contrôler votre connexion !")
                         }
-                    }) {
+                    })
+                    {
                         Text("Réessayer")
                             .padding()
                             .frame(maxWidth: 300)
                             .foregroundColor(Color(hex: "29aa96"))
                             .background(.ultraThinMaterial)
-                            .cornerRadius(10)
-                            
                     }
                 }
                 .padding()

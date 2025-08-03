@@ -8,69 +8,85 @@
 import Foundation
 
 class LoginPageModel: ObservableObject {
+    // MARK: - User Input Properties
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var re_Enter_Password: String = ""
+    @Published var reEnterPassword: String = ""
+    // MARK: - UI State
     @Published var showPassword: Bool = false
     @Published var showReEnterPassword: Bool = false
     @Published var registerUser: Bool = false
-    
-    // Nouveaux ajouts :
+    // MARK: - Error Handling
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
-    
+    // MARK: - Reset Fields
     func resetFields() {
         email = ""
         password = ""
-        re_Enter_Password = ""
+        reEnterPassword = ""
         showPassword = false
         showReEnterPassword = false
         errorMessage = ""
         showError = false
     }
-    
+
+    // MARK: - Validate Fields
     func validateFields() -> Bool {
-        // Vérification email vide ou invalide
-        if email.trimmingCharacters(in: .whitespaces).isEmpty || !email.contains("@.com") {
-            errorMessage = "Please enter a valid email."
-            showError = true
+        let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        // Check if email is valid
+        guard !trimmedEmail.isEmpty, trimmedEmail.contains("@"), trimmedEmail.contains(".") else {
+            showError(with: "Please enter a valid email.")
             return false
         }
-        
-        // Vérification mot de passe vide
-        if password.isEmpty {
-            errorMessage = "Please enter your password."
-            showError = true
+
+        // Check if password is entered
+        guard !password.isEmpty else {
+            showError(with: "Please enter your password.")
             return false
         }
-        
-        // Enregistrement : vérifier la confirmation
-        if registerUser && password != re_Enter_Password {
-            errorMessage = "Passwords do not match."
-            showError = true
+
+        // If registering, confirm password match
+        if registerUser && password != reEnterPassword {
+            showError(with: "Passwords do not match.")
             return false
         }
-        
-        // Tout est bon
-        showError = false
-        errorMessage = ""
+
+        // All validations passed
+        clearError()
         return true
     }
-    
-    func Login() {
+
+    // MARK: - Login Logic
+    func login() {
         if validateFields() {
-            print("Login successful") // Remplacer par ta logique
+            print("Login successful")
+            // Implémente ta logique ici
         }
     }
-    
-    func Register() {
+
+    // MARK: - Register Logic
+    func register() {
         if validateFields() {
-            print("Registration successful") // Remplacer par ta logique
+            print("Registration successful")
+            // Implémente ta logique ici
         }
     }
-    
-    func ForgotPassword() {
-        print("Reset password") // Remplacer par ta logique
+
+    // MARK: - Forgot Password Logic
+    func forgotPassword() {
+        print("Reset password")
+        // Implémente ta logique ici
+    }
+
+    // MARK: - Helper Methods
+    private func showError(with message: String) {
+        errorMessage = message
+        showError = true
+    }
+
+    private func clearError() {
+        errorMessage = ""
+        showError = false
     }
 }
-

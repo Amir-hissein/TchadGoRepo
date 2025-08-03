@@ -8,12 +8,9 @@ import SwiftUI
 
 struct MainTouristView: View {
     @State private var showDetailView = false
-    
     var body: some View {
-       
         NavigationStack {
             ZStack {
-                
                 HStack {
                     Rectangle()
                         .fill(Color(hex: "29aa96"))
@@ -24,18 +21,11 @@ struct MainTouristView: View {
                 
                 VStack(alignment: .leading, spacing: 10){
                     HStack{
-                        
                         // Bouton Filtre
-                        Button(action: {
-                            print("Filtrage lancé")
-                        }) {
-                            IconButtonView(systemName: "line.3.horizontal.decrease.circle")
+                        Button(action: {print("Filtrage lancé")}) {IconButtonView(systemName: "line.3.horizontal.decrease.circle")
                         }
-                        
-                        // Bouton Favoris
+                     
                         Spacer()
-                        
-                        // Bouton Navigation
                         Button(action: {
                             showDetailView = true
                         }) {
@@ -44,30 +34,21 @@ struct MainTouristView: View {
                         .navigationDestination(isPresented: $showDetailView) {
                             DetailTouristView()
                         }
-                        
-                    }
-                    .padding(.top, 10)
-                    
+                    }.padding(.top, 10)
                     Spacer()
                 }
-                
+
             }
         }
-           
         }
     }
-
-
 struct IconButtonView: View {
     var systemName: String
-    
     var body: some View {
         Image(systemName: systemName)
             .font(.system(size: 24, weight: .bold))
             .foregroundColor(.white)
             .padding()
-          
-        
     }
 }
 
@@ -77,7 +58,6 @@ struct DetailTouristView: View {
             Text("Vue Détail des Lieux")
                 .font(.largeTitle)
                 .padding()
-            
             Spacer()
         }
         .navigationTitle("Détail")
@@ -85,7 +65,6 @@ struct DetailTouristView: View {
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
     }
 }
-
 
 #Preview {
     MainTouristView()

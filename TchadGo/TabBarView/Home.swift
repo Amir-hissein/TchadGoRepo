@@ -8,63 +8,58 @@
 import SwiftUI
 
 struct Home: View {
-    @State var locationShow = false
-    @State var UserShow = false
-    @FocusState var FocusKeyboard: Bool
+    // MARK: - States
+    @State private var locationShow = false
+    @State private var userShow = false
+    @FocusState private var isKeyboardFocused: Bool
+    @State private var searchText: String = ""
+
     let username: String
-    let text = """
-    Discover 
+    private let titleText = """
+    Discover
     your destination!
     """
-  @State var searchText: String = ""
+
     var body: some View {
-        
-        // sectıon de home
         NavigationStack {
-           
-          
-                
-                VStack(alignment: .leading, spacing: 12){
-                    HStack{
-                        Button(action: {
-                            self.locationShow.toggle()
-                        }){
-                            Image( systemName: "location.viewfinder").font(.title2)
-                        }.sheet(isPresented: $locationShow) {
-                            // sheet permet la sortit d une fenetre
-                            LiquidGlassTabBar()
-                        }
-                        Spacer()
-                        
-                        Button(action: {
-                            self.UserShow.toggle()
-                            UserShow = true
-                        }){
-                            Image( systemName: "person.circle").font(.title)
-                        }.sheet(isPresented: $UserShow) {
-                            // sheet permet la sortit d une fenetre
-                       
-                        }
+            VStack(alignment: .leading, spacing: 12) {
+
+                // MARK: - Top Bar Buttons
+                HStack {
+                    // Location button
+                    Button(action: {
+                        locationShow.toggle()}) {
+                        Image(systemName: "location.viewfinder")
+                            .font(.title2)
                     }
-                   
+                    .sheet(isPresented: $locationShow) {
+                        Text("Location Sheet")
+                            .font(.headline)
+                            .padding()
+                    }
 
-                    //section du texte
-                   
-                        Text(text).fontWeight(.heavy).font(.title).padding(.top,15)
-                    LiquidGlassTabBar()
-                        //section du texte de boutton horizontal
-                  
-                 
                     Spacer()
-                    }.padding()
+
+                    // User profile button
+                    Button(action: {userShow.toggle()}) {Image(systemName: "person.circle").font(.title)}
+                    .sheet(isPresented: $userShow) {
+                        LoginPage()
+                    }
                 }
+
+                // MARK: - Title Text
+                Text(titleText)
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .padding(.top, 15)
+
+                Spacer()
             }
+            .padding()
         }
-    
-
-
-
+    }
+}
 
 #Preview {
-    Home( username: "User")
+    Home(username: "User")
 }

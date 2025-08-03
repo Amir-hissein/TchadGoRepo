@@ -10,11 +10,8 @@ import SwiftData
 struct TchadGoApp: App {
     @StateObject private var networkMonitor = NetworkMonitor.shared
     @StateObject private var appState = AppState() // Nouvel état global
-    
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
+        let schema = Schema([Item.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
@@ -25,8 +22,7 @@ struct TchadGoApp: App {
 
     var body: some Scene {
         WindowGroup {
-           GetStarted()
-           
+         LoginPage()
         }
         .modelContainer(sharedModelContainer)
     }
@@ -35,18 +31,14 @@ struct TchadGoApp: App {
 
 class AppState: ObservableObject {
     @Published var shouldShowOnboarding: Bool
-    
     init() {
         let wasTerminated = UserDefaults.standard.bool(forKey: "wasAppTerminated")
         let firstLaunch = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
-        
         shouldShowOnboarding = firstLaunch || wasTerminated
     }
-    
     func completeOnboarding() {
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
         UserDefaults.standard.set(false, forKey: "wasAppTerminated")
         shouldShowOnboarding = false
     }
 }
-

@@ -10,18 +10,15 @@ import SwiftUI
 struct TabbarView: View {
     @State private var selectedTab: Tab = .home
     @Namespace private var animation
-    
     var body: some View {
         ZStack {
             // Contenu selon l'onglet
             VStack(spacing: 0) {
                 switch selectedTab {
                 case .home:
-                    Home(username: "user")
-                        .padding(.top, -30)
+                    Home(username: "home")
                 case .search:
-                    MainTouristView()
-                        .padding(.top, -30)
+                    Text("Ajouter")
                 case .logo:
                     Text("Ajouter")
                 case .favorites:
@@ -29,9 +26,7 @@ struct TabbarView: View {
                 case .settings:
                     Text("Paramètres")
                 }
-                
-                Spacer(minLength: 0)
-                
+                Spacer(minLength: 0)                
                 CustomTabBar(selectedTab: $selectedTab, animation: animation)
             }
         }
@@ -51,7 +46,6 @@ struct CustomTabBar: View {
     @Binding var selectedTab: Tab
     var animation: Namespace.ID
     @State private var tappedTwice = false
-    
     var body: some View {
         HStack(spacing: 0) {
             ForEach(Tab.allCases, id: \.self) { tab in
@@ -59,7 +53,6 @@ struct CustomTabBar: View {
                     withAnimation(.interactiveSpring(response: 0.3, dampingFraction: 0.7)) {
                         selectedTab = tab
                     }
-                    
                     // Animation supplémentaire pour le double-tap
                     if selectedTab == tab {
                         withAnimation(.easeInOut(duration: 0.15)) {
@@ -81,7 +74,6 @@ struct CustomTabBar: View {
                                     .frame(width: 60, height: 50)
                                     .shadow(color: Color(hex: "29aa96"), radius: 10, x: 0, y: 5)
                             }
-                            
                             // Contenu de l'icône
                             if tab == .logo {
                                 Image("go2") // Votre image personnalisée
@@ -107,12 +99,6 @@ struct CustomTabBar: View {
         }
         .padding(.horizontal, 16)
         .padding(.top, 10)
-        .background(
-            BlurView(style: .systemUltraThinMaterialLight)
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(color: Color(hex: "29aa96").opacity(0.1), radius: 10, x: 0, y: 5)
-        )
-        .padding(.horizontal)
     }
 }
 
@@ -125,14 +111,11 @@ struct TabBarButtonStyle: ButtonStyle {
     }
 }
 
-
 struct BlurView: UIViewRepresentable {
     var style: UIBlurEffect.Style
-    
     func makeUIView(context: Context) -> UIVisualEffectView {
         UIVisualEffectView(effect: UIBlurEffect(style: style))
     }
-    
     func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
 }
 

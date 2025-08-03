@@ -13,15 +13,10 @@ struct ContentView: View {
     @State private var prenom: String = ""
     @State private var isLoggedIn: Bool = false
     @State private var showAlert: Bool = false
-    
     var body: some View {
         NavigationStack {
-            VStack(alignment:.leading) {
-                LiquidGlassTabBar()
-                // --- Affichage conditionnel du message de bienvenue ---
-                if isLoggedIn {
-                    HStack { // HStack pour aligner à gauche
-                            Text("👋 Bienvenue, \(nom) !")
+            VStack(alignment:.leading) {if isLoggedIn {HStack {
+                Text("👋 Bienvenue, \(nom) !")
                                 .font(.title2)
                                 .padding(.leading, 20)
                                 .foregroundColor(.gray)
@@ -29,7 +24,6 @@ struct ContentView: View {
                     }
                     .frame(maxWidth: .infinity)
                     Spacer()
-                              
                 }
                 // --- Formulaire sinon ---
                 else {
@@ -38,7 +32,6 @@ struct ContentView: View {
                             .textFieldStyle(.roundedBorder)
                         TextField("Prénom", text: $prenom)
                             .textFieldStyle(.roundedBorder)
-                        
                         Button("Valider") {
                             if nom.isEmpty || prenom.isEmpty {
                                 showAlert = true // Affiche l'alerte si champs vides
@@ -68,5 +61,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-       
 }

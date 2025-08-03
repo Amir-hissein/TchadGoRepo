@@ -27,7 +27,6 @@ struct RootViews: View {
                 }
             }
             .animation(.easeInOut(duration: 0.4), value: networkMonitor.isConnected)
-            
             // 🔔 Toast View
             if showToast {
                 VStack {
@@ -36,7 +35,6 @@ struct RootViews: View {
                         .padding()
                         .background(Color.black.opacity(0.8))
                         .foregroundColor(.white)
-                        .cornerRadius(10)
                         .padding(.bottom, 50)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                         .animation(.bouncy, value: showToast)
@@ -63,4 +61,3 @@ struct RootViews: View {
         }
     }
 }
-

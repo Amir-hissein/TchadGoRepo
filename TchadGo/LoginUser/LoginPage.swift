@@ -1,25 +1,18 @@
-//
-//  LoginView.swift
-//  TchadGo
-//
-//  Created by Amir hissein on 4.07.2025.
-//
-
 import SwiftUI
 
 struct LoginPage: View {
     @StateObject var loginData: LoginPageModel = LoginPageModel()
 
-    // Animation states
     @State private var animateTitle = false
     @State private var animateFields = false
     @State private var animateButtons = false
+
     var body: some View {
         NavigationStack {
             VStack {
-                // Header image and background decorations
+                // Header
                 VStack(alignment: .center, spacing: 10) {
-                    Image("go2")
+                    Image("go6")
                         .resizable()
                         .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundColor(.white)
@@ -59,6 +52,7 @@ struct LoginPage: View {
                 .offset(y: animateTitle ? 0 : -20)
                 .animation(.easeOut(duration: 0.5).delay(0.1), value: animateTitle)
 
+                // Form content
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 15) {
                         if loginData.showError {
@@ -71,14 +65,15 @@ struct LoginPage: View {
 
                         Text(loginData.registerUser ? "Register" : "Login")
                             .font(.largeTitle).bold()
-                            .foregroundColor(loginData.registerUser ? Color.init(hex: "29aa96") : Color.gray)
+                            .foregroundColor(loginData.registerUser ? Color(hex: "29aa96") : Color.gray)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .opacity(animateTitle ? 1 : 0)
                             .offset(y: animateTitle ? 0 : 20)
                             .animation(.easeOut.delay(0.2), value: animateTitle)
 
-                        Group {
+                        // ✅ Champs de formulaire sans Group
+                        VStack(spacing: 15) {
                             CustomTextField(icon: "envelope", title: "Email", hint: "Enter your mail", value: $loginData.email, shoPassword: .constant(false))
                                 .padding(.top, 30)
 
@@ -86,7 +81,7 @@ struct LoginPage: View {
                                 .padding(.top, 10)
 
                             if loginData.registerUser {
-                                CustomTextField(icon: "lock", title: "Re-enter Password", hint: "Re-enter your password", value: $loginData.re_Enter_Password, shoPassword: $loginData.showReEnterPassword)
+                                CustomTextField(icon: "lock", title: "Re-enter Password", hint: "Re-enter your password", value: $loginData.reEnterPassword, shoPassword: $loginData.showReEnterPassword)
                                     .padding(.top, 10)
                             }
                         }
@@ -94,13 +89,14 @@ struct LoginPage: View {
                         .offset(y: animateFields ? 0 : 20)
                         .animation(.easeOut(duration: 0.4).delay(0.3), value: animateFields)
 
+                        // Mot de passe oublié
                         Button {
-                            loginData.ForgotPassword()
+                            loginData.forgotPassword()
                         } label: {
                             NavigationLink(destination: ForgotPasswordView()) {
                                 Text("Forgot password?")
                                     .font(.body)
-                                    .foregroundColor(.init(hex: "29aa96"))
+                                    .foregroundColor(Color(hex: "29aa96"))
                             }
                         }
                         .padding(.top, 8)
@@ -109,11 +105,12 @@ struct LoginPage: View {
                         .offset(y: animateButtons ? 0 : 20)
                         .animation(.easeOut.delay(0.4), value: animateButtons)
 
+                        // Bouton Connexion / Inscription
                         Button {
                             if loginData.registerUser {
-                                loginData.Register()
+                                loginData.register()
                             } else {
-                                loginData.Login()
+                                loginData.login()
                             }
                         } label: {
                             Text(loginData.registerUser ? "Register" : "Login")
@@ -132,6 +129,7 @@ struct LoginPage: View {
                         .offset(y: animateButtons ? 0 : 20)
                         .animation(.easeOut.delay(0.5), value: animateButtons)
 
+                        // Changement mode Inscription / Connexion
                         Button {
                             withAnimation {
                                 loginData.registerUser.toggle()
@@ -140,7 +138,7 @@ struct LoginPage: View {
                         } label: {
                             Text(loginData.registerUser ? "Already have an account?" : "Create account")
                                 .font(.body)
-                                .foregroundColor(.init(hex: "29aa96"))
+                                .foregroundColor(Color(hex: "29aa96"))
                         }
                         .padding(.top, 8)
                         .opacity(animateButtons ? 1 : 0)
@@ -152,12 +150,12 @@ struct LoginPage: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(
                     Color.white
-                        .clipShape(customCorners(corners: [.topLeft, .topRight], radius: 25))
+                        .clipShape(CustomCorners(corners: [.topLeft, .topRight], radius: 25))
                         .ignoresSafeArea()
                 )
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.init(hex: "29aa96"))
+            .background(Color(hex: "29aa96"))
             .onAppear {
                 animateTitle = true
                 animateFields = true
@@ -166,6 +164,7 @@ struct LoginPage: View {
         }
     }
 
+    // Champ personnalisé
     @ViewBuilder
     func CustomTextField(icon: String, title: String, hint: String, value: Binding<String>, shoPassword: Binding<Bool>) -> some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -209,6 +208,7 @@ struct LoginPage: View {
     LoginPage()
 }
 
+// Extension pour obtenir la taille de l’écran
 extension View {
     func GetRect() -> CGSize {
         guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
